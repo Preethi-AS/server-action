@@ -7,7 +7,7 @@ pool:
 steps:
   - task: RTASTask@3
     inputs:
-      OTSService: '1105-server-connection'
+      OTSService: 'RTASService'
       teamspace: 'Initial Team Space'
       project: 'Project2'
       branch: 'master'
