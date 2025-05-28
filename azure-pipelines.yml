@@ -5,7 +5,7 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-  - task: OTSTask@3
+  - task: RTASTask@3
     inputs:
       OTSService: '1105-server-connection'
       teamspace: 'Initial Team Space'
