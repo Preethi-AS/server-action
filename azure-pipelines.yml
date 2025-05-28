@@ -5,18 +5,6 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-  - powershell: |
-      nslookup master-hcl.tp-k8s.nonprod.hclpnp.com
-      ping master-hcl.tp-k8s.nonprod.hclpnp.com
-      curl -v https://master-hcl.tp-k8s.nonprod.hclpnp.com/test/
-    displayName: 'Check connectivity to target server'
-
-  - powershell: |
-      if (!(Test-Path "C:\TAMLog")) {
-        New-Item -ItemType Directory -Path "C:\TAMLog"
-      }
-    displayName: 'Create C:\\TAMLog directory'
-
   - task: OTSTask@3
     inputs:
       OTSService: 'DevOps TestHub'
