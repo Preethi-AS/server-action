@@ -1,18 +1,25 @@
-name: HCL OneTest Server
+trigger:
+main
 
-on: workflow_dispatch
+pool:
+  vmImage: ubuntu-latest
 
-jobs:
-    OTS-Action:
-        runs-on: self-hosted
-        name: HCL OneTest Server
-        steps:
-         - name: Execute Test
-           uses: HCL-TECH-SOFTWARE/onetest-server-action@v1
-           with:
-            serverUrl: https://master-hcl.tp-k8s.nonprod.hclpnp.com
-            offlineToken: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI2NDVhMmFmOS1jOWNhLTQ1ZTktOTM3Ny01OTcyMGMyZGVmNTUifQ.eyJpYXQiOjE3MDY3MjY4OTIsImp0aSI6IjBiNmUxYjFkLWYwMDItNDQxYy1iN2NkLTM4NDIyZmU2N2NmYiIsImlzcyI6Imh0dHBzOi8vbWFzdGVyLWhjbC50cC1rOHMubm9ucHJvZC5oY2xwbnAuY29tL2F1dGgvcmVhbG1zL3Rlc3RzZXJ2ZXIiLCJhdWQiOiJodHRwczovL21hc3Rlci1oY2wudHAtazhzLm5vbnByb2QuaGNscG5wLmNvbS9hdXRoL3JlYWxtcy90ZXN0c2VydmVyIiwic3ViIjoiNjVmOTdlNWMtODYxMy00NzAxLWEzMWQtZGY4ZjMyOTk1ZTFiIiwidHlwIjoiT2ZmbGluZSIsImF6cCI6InRlc3RzZXJ2ZXIiLCJzZXNzaW9uX3N0YXRlIjoiYTMyYmU1ZTItNzIyZC00MmFlLWEzZDUtNmYyZjlhMTM4YWE2Iiwic2NvcGUiOiJvZmZsaW5lX2FjY2VzcyBwcm9maWxlIGVtYWlsIiwic2lkIjoiYTMyYmU1ZTItNzIyZC00MmFlLWEzZDUtNmYyZjlhMTM4YWE2In0.5Cp_HNiVIUIEtezXZ0SKyhUEfzrbz_A8OivrigtRMaQ
-            teamspace: Initial Team Space
-            project: ProjectTest
-            branch: master
-            assetId: 6f53d796-9e65-4d2a-93d7-969e655d2af0
+steps:
+task: OTSTask@3
+  inputs:
+    OTSService: 'DevOps TestHub'
+    teamspace: 'Initial Team Space'
+    project: 'Project2'
+    branch: 'master'
+    repo: 'https://github.com/Preethi-AS/server-action.git'
+    filePath: 'Proj30/4WebUITests.xml'
+    exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+task: PublishTestResults@2
+  condition: always()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
+    searchFolder: '$(Agent.TempDirectory)'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'SBD SAP Tests'
