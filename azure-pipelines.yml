@@ -24,8 +24,8 @@ steps:
     condition: always()
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
-      searchFolder: '$(Agent.TempDirectory)'
+      testResultsFiles: 'C:\\TAMLog\\exportReport.xml'
+      searchFolder: 'C:\\TAMLog'
       mergeTestResults: true
       failTaskOnFailedTests: true
       testRunTitle: 'SBD SAP Tests'
