@@ -30,10 +30,5 @@ steps:
       failTaskOnFailedTests: true
       testRunTitle: 'SBD SAP Tests'
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
-
 
 
