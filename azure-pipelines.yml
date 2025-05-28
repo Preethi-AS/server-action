@@ -1,0 +1,39 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: OTSTask@3
+    inputs:
+      OTSService: 'DevOps TestHub'
+      teamspace: 'Initial Team Space'
+      project: 'Project2'
+      branch: 'master'
+      repo: 'https://github.com/Preethi-AS/server-action.git'
+      filePath: 'Proj30/4WebUITests.xml'
+      exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
+      searchFolder: '$(Agent.TempDirectory)'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: 'SBD SAP Tests'
+
+  - script: |
+      echo Add other tasks to build, test, and deploy your project.
+      echo See https://aka.ms/yaml
+    displayName: 'Run a multi-line script'
+
+
+
