@@ -6,6 +6,7 @@ pool:
 
 steps:
   - task: OTSTask@3
+    continueOnError: true
     inputs:
       OTSService: 'Sofy-DTHub-Connection'
       teamspace: 'Initial Team Space'
