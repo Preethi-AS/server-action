@@ -10,7 +10,7 @@ steps:
       OTSService: 'Sofy-DTHub-Connection'
       teamspace: 'Initial Team Space'
       project: 'SBD SAP Tests'
-      branch: 'master'
+      branch: 'main'
       repo: 'https://github.com/virtualmonster/SBD.git'
       filePath: 'google/google homepage.dtx.yaml'
 
