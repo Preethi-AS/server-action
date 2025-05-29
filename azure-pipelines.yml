@@ -3,6 +3,9 @@ trigger:
 
 pool:
   name: 'Default'
+  variables:
+  NODE_OPTIONS: "--tls-min-v1.2"
+
 
 steps:
   - task: OTSTask@3
