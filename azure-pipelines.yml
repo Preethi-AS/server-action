@@ -3,7 +3,9 @@ trigger:
 
 pool:
   name: 'Default'
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-latest  
+  variables:NODE_EXTRA_CA_CERTS: 'C:\AzureAgent\_work\6\s\ca-master-hcl.crt'
+
 
 steps:
   - script: |
