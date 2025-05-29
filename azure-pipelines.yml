@@ -5,9 +5,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - task: RTASTask@3
+  - task: OTSTask@3
     inputs:
-      OTSService: 'RTASService'
+      OTSService: 'DevOpsTestHub'
       teamspace: 'Initial Team Space'
       project: 'Project2'
       branch: 'master'
