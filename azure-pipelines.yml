@@ -10,7 +10,7 @@ pool:
 steps:
   - task: OTSTask@3
     inputs:
-      OTSService: 'DevOpsTestHub'
+      OTSService: 'DTHubConn'
       teamspace: 'Initial Team Space'
       project: 'Project2'
       branch: 'master'
