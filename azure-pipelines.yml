@@ -7,7 +7,7 @@ pool:
 
 steps:
   - script: |
-      curl --tlsv1.2 --cacert $(Build.SourcesDirectory)\ca-master-hcl.crt https://master-hcl.tp-k8s.nonprod.hclpnp.com/test
+      curl -k --tlsv1.2  --cacert $(Build.SourcesDirectory)\ca-master-hcl.crt https://master-hcl.tp-k8s.nonprod.hclpnp.com/test
     displayName: 'Test with TLS 1.2 and custom CA'
 
   - task: OTSTask@3
