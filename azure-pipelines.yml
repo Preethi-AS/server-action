@@ -2,10 +2,14 @@ trigger:
   - azure-pipelines 
 
 pool:
-  vmImage: ubuntu-latest
   name: 'Default'
+  vmImage: ubuntu-latest
 
 steps:
+  - script: |
+      curl --tlsv1.2 --insecure -v https://master-hcl.tp-k8s.nonprod.hclpnp.com/test
+    displayName: "Curl with revocation check disabled (Ubuntu)"
+
   - task: OTSTask@3
     inputs:
       OTSService: 'DevOpsTestHub'
@@ -14,10 +18,4 @@ steps:
       branch: 'master'
       repo: 'https://github.com/Preethi-AS/server-action.git'
       filePath: 'Proj30/4WebUITests.xml'
-      exportReport: 'C:/TAMLog/exportReport.xml'
 
-  - task: PublishTestResults@2
-    condition: always()
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: 'C:/TAMLog/exportReport.xml'
