@@ -5,6 +5,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+  - script:  "Temp path is: $(Agent.TempDirectory)"
+    displayName: 'Display Temp Directory Path'
   - task: OTSTask@3
     inputs:
       OTSService: 'Sofy-DTHub-Connection'
@@ -14,16 +17,13 @@ steps:
       repo: 'https://github.com/anandnd/CodeSweep-Example.git'
       filePath: 'cs-sample/src/.codesweep'
       exportReport: '$(Agent.TempDirectory)/exportReport.xml'
-    
   - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
     condition: always()
     inputs:
-     testResultsFormat: 'JUnit'
-     testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
-     searchFolder: '$(Agent.TempDirectory)'
-     mergeTestResults: true
-     failTaskOnFailedTests: true
-     testRunTitle: 'SBD SAP Tests'
-
-
-
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
+      searchFolder: '$(Agent.TempDirectory)'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: 'SBD SAP Tests'
