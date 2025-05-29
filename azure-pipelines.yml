@@ -5,9 +5,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-  - script:  "Temp path is: $(Agent.TempDirectory)"
-    displayName: 'Display Temp Directory Path'
   - task: OTSTask@3
     inputs:
       OTSService: 'Sofy-DTHub-Connection'
@@ -17,6 +14,19 @@ steps:
       repo: 'https://github.com/anandnd/CodeSweep-Example.git'
       filePath: 'cs-sample/src/.codesweep'
       exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+
+  - script: |
+      if [ -f "$(Agent.TempDirectory)/exportReport.xml" ]; then
+        echo "✅ exportReport.xml was generated."
+      else
+        echo "❌ exportReport.xml was NOT generated."
+        exit 1
+      fi
+    displayName: 'Check if exportReport.xml Exists'
+
+  - script: cat "$(Agent.TempDirectory)/exportReport.xml"
+    displayName: 'Display exportReport.xml Contents'
+
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
     condition: always()
@@ -27,3 +37,10 @@ steps:
       mergeTestResults: true
       failTaskOnFailedTests: true
       testRunTitle: 'SBD SAP Tests'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish exportReport.xml as Artifact'
+    inputs:
+      PathtoPublish: '$(Agent.TempDirectory)/exportReport.xml'
+      ArtifactName: 'TestReport'
+      publishLocation: 'Container'
