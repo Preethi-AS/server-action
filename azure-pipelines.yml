@@ -11,7 +11,7 @@ steps:
       teamspace: 'Initial Team Space'
       project: 'SBD SAP Tests'
       branch: 'master'
-      repo: 'https://github.com/Preethi-AS/server-action.git'
+      repo: 'https://github.com/virtualmonster/SBD.git'
       filePath: 'SAP_GUI/SAPTest.testsuite'
 
 
