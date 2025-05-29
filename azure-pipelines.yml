@@ -9,7 +9,7 @@ steps:
     inputs:
       OTSService: 'Sofy-DTHub-Connection'
       teamspace: 'Initial Team Space'
-      project: 'ProjectTest'
+      project: 'SBD SAP Tests'
       branch: 'master'
       repo: 'https://github.com/Preethi-AS/server-action.git'
       filePath: 'SAP_GUI/SAPTest.testsuite'
