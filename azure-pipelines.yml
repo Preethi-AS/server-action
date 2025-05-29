@@ -13,13 +13,14 @@ steps:
       branch: 'main'
       repo: 'https://github.com/virtualmonster/SBD.git'
       filePath: 'google/google homepage.dtx.yaml'
-      exportReport: 'C:/TAMLog/exportReport.xml'
+      exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+    
   - task: PublishTestResults@2
     condition: always()
     inputs:
      testResultsFormat: 'JUnit'
-     testResultsFiles: 'C:/TAMLog/exportReport.xml'
-     searchFolder: 'C:/TAMLog'
+     testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
+     searchFolder: '$(Agent.TempDirectory)'
      mergeTestResults: true
      failTaskOnFailedTests: true
      testRunTitle: 'SBD SAP Tests'
