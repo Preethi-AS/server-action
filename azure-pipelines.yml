@@ -12,7 +12,7 @@ steps:
       project: 'SBD SAP Tests'
       branch: 'master'
       repo: 'https://github.com/virtualmonster/SBD.git'
-      filePath: 'SAP_GUI/SAPTest.testsuite'
+      filePath: 'google/google homepage.dtx.yaml'
 
 
 
