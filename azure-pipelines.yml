@@ -7,11 +7,11 @@ pool:
 steps:
   - task: OTSTask@3
     inputs:
-      OTSService: 'Sofy-DTHub-Connection'
+      OTSService: 'DTHubConn'
       teamspace: 'Initial Team Space'
-      project: 'SBD SAP Tests'
+      project: 'Project2'
       branch: 'main'
-      repo: 'https://github.com/virtualmonster/SBD.git'
+      repo: 'https://github.com/Preethi-AS/DTHub.git'
       filePath: 'google/google homepage.dtx.yaml'
 
 
