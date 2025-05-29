@@ -1,11 +1,8 @@
 trigger:
-  - azure-pipelines
+  - main
 
 pool:
-  name: 'Default'
-  variables:
-  NODE_OPTIONS: "--tls-min-v1.2"
-
+  vmImage: 'ubuntu-latest'
 
 steps:
   - task: OTSTask@3
@@ -16,5 +13,6 @@ steps:
       branch: 'master'
       repo: 'https://github.com/Preethi-AS/server-action.git'
       filePath: 'Proj30/4WebUITests.xml'
+
 
 
