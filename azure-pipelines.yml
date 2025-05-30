@@ -10,10 +10,10 @@ steps:
     inputs:
       OTSService: 'Sofy-DTHub-Connection'
       teamspace: 'Initial Team Space'
-      project: 'ProjectTest'
+      project: 'SBD SAP Tests'
       branch: 'main'
-      repo: 'https://github.com/anandnd/CodeSweep-Example.git'
-      filePath: 'cs-sample/src/.codesweep'
+      repo: 'https://github.com/virtualmonster/OneTest_SAPGUI.git'
+      filePath: 'SAP_GUI/SAPTest.testsuite'
       exportReport: '$(Agent.TempDirectory)/exportReport.xml'
 
   - script: |
