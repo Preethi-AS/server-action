@@ -11,7 +11,7 @@ steps:
       OTSService: 'Sofy-DTHub-Connection'
       teamspace: 'Initial Team Space'
       project: 'SBD SAP Tests'
-      branch: 'main'
+      branch: 'master'
       repo: 'https://github.com/virtualmonster/OneTest_SAPGUI.git'
       filePath: 'SAP_GUI/SAPTest.testsuite'
       exportReport: '$(Agent.TempDirectory)/exportReport.xml'
