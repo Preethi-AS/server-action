@@ -8,7 +8,7 @@ steps:
   - task: OTSTask@3
     continueOnError: true
     inputs:
-      OTSService: 'Sofy-DTHub-Connection'
+      OTSService: 'Master-Con'
       teamspace: 'Initial Team Space'
       project: 'SBD SAP Tests'
       branch: 'master'
