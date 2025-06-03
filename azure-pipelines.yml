@@ -1,0 +1,13 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+  name: 'MySystemAgent'
+
+steps:
+- script: |
+    set NODE_DEBUG=tls,https
+    node test-tls.js
+  displayName: 'Node.js TLS debug log'
+  
