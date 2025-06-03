@@ -1,0 +1,54 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+  # name: 'MySystemAgent'
+
+steps:
+  - script: |
+     node -v
+     node -p "process.versions"
+    displayName: 'Show Node.js Version'
+
+
+  - task: OTSTask@3
+    continueOnError: true
+    inputs:
+      OTSService: 'Master-Con'
+      teamspace: 'Initial Team Space'
+      project: 'SBD SAP Tests'
+      branch: 'master'
+      repo: 'https://github.com/virtualmonster/OneTest_SAPGUI.git'
+      filePath: 'SAP_GUI/SAPTest.testsuite'
+      exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+
+  - script: |
+      if [ -f "$(Agent.TempDirectory)/exportReport.xml" ]; then
+        echo "✅ exportReport.xml was generated."
+      else
+        echo "❌ exportReport.xml was NOT generated."
+        exit 1
+      fi
+    displayName: 'Check if exportReport.xml Exists'
+
+  - script: cat "$(Agent.TempDirectory)/exportReport.xml"
+    displayName: 'Display exportReport.xml Contents'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
+      searchFolder: '$(Agent.TempDirectory)'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: 'SBD SAP Tests'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish exportReport.xml as Artifact'
+    inputs:
+      PathtoPublish: '$(Agent.TempDirectory)/exportReport.xml'
+      ArtifactName: 'TestReport'
+      publishLocation: 'Container'
