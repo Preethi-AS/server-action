@@ -7,7 +7,7 @@ pool:
 
 steps:
 - script: |
-    NODE_DEBUG=tls,https node test-tls.js
+    set NODE_DEBUG=tls,https
     node test-tls.js
   displayName: 'Node.js TLS debug log'
   
