@@ -1,3 +1,11 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+  # name: 'MySystemAgent'
+
+steps:
 - script: |
     node test-tls.js
   displayName: 'Test Node.js direct TLS connection'
