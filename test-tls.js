@@ -1,6 +1,6 @@
 const https = require('https');
 
-https.get('https://master-hcl.tp-k8s.nonprod.hclpnp.com/test', res => {
+https.get('https://testhub.sbx0378.play.hclsofy.com', res => {
   console.log('status:', res.statusCode);
 }).on('error', err => {
   console.error('error:', err);
