@@ -7,9 +7,10 @@ pool:
 
 steps:
   - script: |
-     echo "Checking TLS version..."
-     curl -s -D - https://master-hcl.tp-k8s.nonprod.hclpnp.com -o /dev/null --write-out "%{ssl_version}\n"
+     echo "Checking TLS version used by curl..."
+     curl -v https://master-hcl.tp-k8s.nonprod.hclpnp.com 2>&1 | grep -Ei 'TLS|SSL|ALPN' || echo "⚠️ No TLS info found"
     displayName: 'Display TLS version with curl'
+
 
   - task: OTSTask@3
     continueOnError: true
