@@ -1,0 +1,3 @@
+- script: |
+    node test-tls.js
+  displayName: 'Test Node.js direct TLS connection'
