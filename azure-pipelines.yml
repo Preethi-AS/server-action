@@ -7,9 +7,9 @@ pool:
 
 steps:
   - script: |
-     echo "Checking TLS version used by curl..."
-     curl -v https://master-hcl.tp-k8s.nonprod.hclpnp.com 2>&1 | grep -Ei 'TLS|SSL|ALPN' || echo "⚠️ No TLS info found"
-    displayName: 'Display TLS version with curl'
+     node -v
+     node -p "process.versions"
+    displayName: 'Show Node.js Version'
 
 
   - task: OTSTask@3
