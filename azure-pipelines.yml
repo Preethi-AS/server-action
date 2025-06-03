@@ -6,6 +6,10 @@ pool:
   # name: 'MySystemAgent'
 
 steps:
+  - script: |
+      curl -v https://master-hcl.tp-k8s.nonprod.hclpnp.com 2>&1 | grep -i 'SSL connection'
+    displayName: 'Check TLS version with curl'
+
   - task: OTSTask@3
     continueOnError: true
     inputs:
@@ -46,8 +50,3 @@ steps:
       PathtoPublish: '$(Agent.TempDirectory)/exportReport.xml'
       ArtifactName: 'TestReport'
       publishLocation: 'Container'
-
-  - script: |
-      curl -v https://master-hcl.tp-k8s.nonprod.hclpnp.com 2>&1 | grep -i 'SSL connection'
-    displayName: 'Check TLS version with curl'
-
