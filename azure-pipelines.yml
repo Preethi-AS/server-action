@@ -16,14 +16,3 @@ steps:
       repo: 'https://github.com/oresteegidio/EmeraldDemo'
       filePath: 'Emerald-UI-Tests/Bath_Search.testsuite'
       exportReport: '$(Agent.TempDirectory)/exportReport.xml'
-
-  - task: PublishTestResults@2
-    displayName: 'Publish JUnit Test Results'
-    condition: always()
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
-      searchFolder: '$(Agent.TempDirectory)'
-      mergeTestResults: true
-      failTaskOnFailedTests: true
-      testRunTitle: 'SBD Test'
