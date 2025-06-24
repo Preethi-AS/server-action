@@ -2,7 +2,8 @@ trigger:
   - main
 
 pool:
-  vmImage: ubuntu-latest
+  #vmImage: ubuntu-latest
+  name: 'MySystemAgent'
 
 steps:
   - task: OTSTask@3
