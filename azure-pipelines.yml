@@ -2,12 +2,27 @@ trigger:
   - main
 
 pool:
-  vmImage: 'ubuntu-latest'
-  name: 'MySystemAgent'
+  vmImage: ubuntu-latest
 
 steps:
-- script: |
-    set NODE_DEBUG=tls,https
-    node test-tls.js
-  displayName: 'Node.js TLS debug log'
-  
+  - task: OTSTask@3
+    displayName: 'Run OTS Tests'
+    inputs:
+      OTSService: 'SofyServer'
+      teamspace: 'Initial Team Space'
+      project: 'Emerald_Demo'
+      branch: 'main'
+      repo: 'https://github.com/oresteegidio/EmeraldDemo'
+      filePath: 'Emerald-UI-Tests/Bath_Search.testsuite'
+      exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish JUnit Test Results'
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '$(Agent.TempDirectory)/exportReport.xml'
+      searchFolder: '$(Agent.TempDirectory)'
+      mergeTestResults: true
+      failTaskOnFailedTests: true
+      testRunTitle: 'SBD Test'
