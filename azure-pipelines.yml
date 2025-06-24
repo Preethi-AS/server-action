@@ -8,7 +8,7 @@ steps:
   - task: OTSTask@3
     displayName: 'Run OTS Tests'
     inputs:
-      OTSService: 'Master-Con'
+      OTSService: 'MasterConSofy'
       teamspace: 'Initial Team Space'
       project: 'Emerald_Demo'
       branch: 'main'
