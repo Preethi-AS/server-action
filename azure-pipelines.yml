@@ -15,4 +15,3 @@ steps:
       branch: 'main'
       repo: 'https://github01.hclpnp.com/preethi-as/separator-master.git'
       filePath: 'Amazon/test3.dtx.yaml'
-      exportReport: '$(Agent.TempDirectory)/exportReport.xml'
