@@ -16,6 +16,17 @@ steps:
       repo: 'https://github.com/oresteegidio/EmeraldDemo'
       filePath: 'Emerald-UI-Tests/Bath_Search.testsuite'
       exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+  - script: |
+      if [ -f "$(Agent.TempDirectory)/exportReport.xml" ]; then
+        echo "✅ exportReport.xml was generated."
+      else
+        echo "❌ exportReport.xml was NOT generated."
+        exit 1
+      fi
+    displayName: 'Check if exportReport.xml Exists'
+
+  - script: cat "$(Agent.TempDirectory)/exportReport.xml"
+    displayName: 'Display exportReport.xml Contents'
 
   - task: PublishTestResults@2
     displayName: 'Publish JUnit Test Results'
