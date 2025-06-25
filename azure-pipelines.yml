@@ -9,7 +9,7 @@ steps:
   - task: OTSTask@3
     displayName: 'Run OTS Tests'
     inputs:
-      OTSService: 'Master-Con'
+      OTSService: 'SofyServer1'
       teamspace: 'Initial Team Space'
       project: 'Project1'
       branch: 'main'
