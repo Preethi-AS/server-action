@@ -3,16 +3,15 @@ trigger:
 
 pool:
   #vmImage: ubuntu-latest
-  name: 'MySystemAgent'
+  name: 'VMAgents'
 
 steps:
   - task: OTSTask@3
     displayName: 'Run OTS Tests'
     inputs:
-      OTSService: 'MasterConSofy'
+      OTSService: 'SofyServer1'
       teamspace: 'Initial Team Space'
-      project: 'Emerald_Demo'
+      project: 'Project1'
       branch: 'main'
-      repo: 'https://github.com/oresteegidio/EmeraldDemo'
-      filePath: 'Emerald-UI-Tests/Bath_Search.testsuite'
-      exportReport: '$(Agent.TempDirectory)/exportReport.xml'
+      repo: 'https://github01.hclpnp.com/preethi-as/separator-master.git'
+      filePath: 'Amazon/test3.dtx.yaml'
